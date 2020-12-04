@@ -37,17 +37,17 @@ python manage.py runserver
 - [x] Set up the repository 11/27/2020
 - [x] Create a student object to store neighborhood data. 11/28/2020
 - [x] Connect django backend to react frontend 11/29/2020.
-- [ ] Generate Templates for
-    - [ ] HomePage
-    - [ ] Opportunity Atlas Web Page
-    - [ ] School Selection Page
-    - [ ] School Ratings Page
-    - [ ] ACCESS team page
-- [ ] Style the Template Pages with CSS / SASS
+- [x] Generate Templates for 12/3/2020
+    - [x] HomePage 12/3/2020
+    - [x] Opportunity Atlas Web Page 12/3/2020
+    - [x] School Selection Page 12/3/2020
+    - [x] School Ratings Page 12/3/2020
+    - [x] ACCESS team page 12/3/2020
 - [ ] Connect Template Pages to Backend Database 
     - [ ] Switch from SQL to PostgreSQL
 - [ ] Connect Opportunity Atlas Web Page to Repo with images. 
 - [ ] Import Student Data safely and securely
+- [ ] Finish styling the Template Pages with material-ui
 - [ ] Add Text Transcription and Translation via Google Translate.
 - [ ] Deploy to Heroku / Add Deployment Code
 

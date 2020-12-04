@@ -19,27 +19,26 @@ export default class Access extends Component {
                     the highest-quality school and neighborhood environments possible, please fill out the form below
                     and a member of the ACCESS team will be in touch!
                 </h1>
-                <Grid container direction="column" justify="center" alignItems="center">
+                <Grid container width={1}>
                     <Grid item xs={12}>
-                        <TextField id="standard-basic" label="Name">Name</TextField>
+                        <TextField id="standard-full-width" label="Name">Name</TextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField id="standard-basic" label="Phone Number">Phone Number</TextField>
+                        <TextField id="standard-full-width" label="Phone Number">Phone Number</TextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField id="standard-basic" label="Email">Email</TextField>
+                        <TextField id="standard-full-width" label="Email">Email</TextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField id="standard-basic" label="Jamatkhana">Jamatkhana</TextField>
+                        <TextField id="standard-full-width" label="Jamatkhana">Jamatkhana</TextField>
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField id="standard-basic" label="Your comments / questions">Your comments / questions</TextField>
+                        <TextField id="standard-full-width" label="Your comments / questions">Your comments / questions</TextField>
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="contained">Submit</Button>
                     </Grid>
                 </Grid>
-                
             </Container>
         );
     }

@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { render } from 'react-dom';
 import { Link } from "react-router-dom";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 
 
@@ -26,9 +27,17 @@ export default class HomePage extends Component {
                 <h3>
                     Enter your home address to get started. 
                 </h3>
-                <TextField id="standard-basic" label="Address"></TextField>
+                <TextField id="standard-full-width" 
+                    label="Address" style= {{ margin: 8 }} 
+                    placeholder="Address" fullWidth margin="normal" 
+                    InputLabelProps={{shrink:true,}}>
+                </TextField>
                 <Link to ="/atlas">
-                    <Button variant="contained">Next</Button>
+                    <Button variant="contained"
+                            color="black"
+                            endIcon={<ArrowForwardIosIcon>Next</ArrowForwardIosIcon>}>
+                                Next
+                    </Button>
                 </Link>
             </Container>
         );
