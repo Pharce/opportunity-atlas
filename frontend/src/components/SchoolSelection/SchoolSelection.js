@@ -32,23 +32,20 @@ export default class SchoolSelection extends Component {
         return(
             <Container>
                 <h1>
-                    Now please indicate which you child attends (or will attend, if your child id below the age of 5):
+                    Now please indicate which you child attends (or will attend, if your child is below the age of 5):
                 </h1>
-                <div style = {{textAlign: 'center', paddingTop: '30vh'}}>
-                    <input type='text' value = {this.state.searchTerm} onChange={this.editSearchTerm} placeholder="Search for a school"/>
-                    <br></br>
-                    <h3>These are the schools in your search</h3>
-                    <NamesContainer names = {this.dynamicSearch()}/>
-                </div>
-
-                <TextField id="standard-full-width" 
-                    label="School"
-                    placeholder="School Name" fullWidth margin="normal" 
-                    InputLabelProps={{shrink:true,}}>
-                </TextField>
                 <h2>
                     If you have children at multiple schools, start by picking one. 
                 </h2>
+                <TextField id="standard-full-width" 
+                    label="School"
+                    placeholder="School Name" fullWidth margin="normal" 
+                    onChange={this.editSearchTerm}
+                    value = {this.state.searchTerm}
+                    InputLabelProps={{shrink:true,}}>
+                </TextField>
+                <NamesContainer names = {this.dynamicSearch()}/>
+                
                 <Link to ="/schoolquality">
                     <Button variant="contained"
                             color="black"
