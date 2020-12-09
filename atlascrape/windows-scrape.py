@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 if __name__ == '__main__':
 
     tract_id = '38077970700'
+    address_id = ''
 
     driver = Edge(executable_path=r"C:\Users\faris\documents\akeb\opportunity-atlas\atlascrape\msedgedriver.exe")
 
