@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from oab import views
+from oab.views import SchoolUploadView
 
 router = routers.DefaultRouter()
 router.register(r'students', views.StudentView, 'oab')
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('importschools/', SchoolUploadView.as_view(), name='importschools')
 ]

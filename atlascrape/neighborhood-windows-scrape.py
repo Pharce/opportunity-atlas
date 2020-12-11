@@ -11,7 +11,7 @@ if __name__ == '__main__':
     address_id = ''
 
     driver = Edge(executable_path=r"C:\Users\faris\documents\akeb\opportunity-atlas\atlascrape\msedgedriver.exe")
-
+    # driver = Edge(executable_path="./msedgedriver.exe")
     # Launch Microsoft Edge (Chromium)
     options = EdgeOptions()
     options.use_chromium = True
