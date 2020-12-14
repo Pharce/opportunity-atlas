@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from .serializers import StudentSerializer, SchoolSerializer
 from .models import Student, School
 from django.views import View
@@ -14,9 +14,21 @@ class StudentView(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     
 
+def filter(request):
+    qs = School.objects.all()
+    school_prefix = request.GET.get('school_prefix')
+    if is_valid_queryparam(school_prefix):
+        qs = qs.filter(school_name__startswith=school_prefix)
+    
+    return qs
+
 class SchoolView(viewsets.ModelViewSet):
     serializer_class = SchoolSerializer
-    queryset = School.objects.all()
+    # queryset = School.objects.all()
+
+    def get_queryset(self):
+        queryset = filter(self.request)
+        return queryset
 
 
 class SchoolUploadView(View):
@@ -30,6 +42,7 @@ class SchoolUploadView(View):
 
         paramfile = request.FILES['schoolsfile'].file
         df = pd.read_csv(paramfile)
+        df = df[df.School != None]
 
         row_iter = df.iterrows()
 
@@ -60,3 +73,15 @@ class SchoolUploadView(View):
             returnmsg = {"status_code": 500}
        
         return JsonResponse(returnmsg)
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
+
+
+
+class SchoolFilterView(generics.ListAPIView):
+    serializer_class = SchoolSerializer
+    
+    def get_queryset(self):
+        qs = filter(self.request)
