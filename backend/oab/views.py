@@ -1,14 +1,21 @@
+from backend.settings import EMAIL_HOST_USER
 from django.shortcuts import render
-from rest_framework import viewsets, generics
-from .serializers import StudentSerializer, SchoolSerializer
-from .models import Student, School
+from rest_framework import viewsets, generics, views
+from rest_framework.decorators import action
+from .serializers import StudentSerializer, SchoolSerializer, AccessSerializer
+from .models import Student, School, Access
 from django.views import View
 from .models import School
 import pandas as pd
 from django.http import HttpResponse,JsonResponse
+from django.core.mail import send_mail
+from .forms import AccessForm
 import io
 
 # Create your views here.
+
+
+
 class StudentView(viewsets.ModelViewSet):
     serializer_class = StudentSerializer
     queryset = Student.objects.all()
@@ -85,3 +92,40 @@ class SchoolFilterView(generics.ListAPIView):
     
     def get_queryset(self):
         qs = filter(self.request)
+
+
+
+class AccessView(viewsets.ModelViewSet):
+    serializer_class = AccessSerializer
+    
+    queryset = Access.objects.all()
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
+    def get(self, request):
+        return HttpResponse("result")
+
+    @action(detail=True, methods=['post'])
+    def send_contact(self, request, *args, **kwargs):
+        user = self.get_object()
+        print(user.name)
+        print(res.data) 
+
+        if request.method == 'POST':
+            name = request.POST['name']
+            number = request.POST['number']
+            email = request.POST['email']
+            jamatkhana = request.POST['jamatkhana']
+            comments = request.POST['comments']
+
+            message = "Number: " +number + "\nEmail: " + email  + "\nJamatkhana" + jamatkhana+ "\nComments: " + comments
+            send_mail(subject=name,
+                    message=message, from_email='aegisstormwind@gmail.com',
+                    recipient_list=["fg3@williams.edu"], fail_silently=False)
+            returnmsg = {"status_code": 200}
+
+            return render(request, 'name.html', {"status_code": 200})
+        else:
+            return render(request, 'name.html', {"status_code": 500})

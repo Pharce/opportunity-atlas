@@ -1,4 +1,3 @@
 backend/db.sqlite3
 *.csv
 data/
-backend/db.sqlite3

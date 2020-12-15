@@ -1,6 +1,15 @@
 from django.db import models
 import pandas as pd
 
+class Access(models.Model):
+    name = models.CharField('name', max_length=100)
+    number = models.CharField('number', max_length=100)
+    email = models.CharField('email', max_length=100)
+    jamatkhana = models.CharField('jamatkhana', max_length=100)
+    comments = models.CharField('comments', max_length=100)
+
+
+
 class School(models.Model):
     """[summary]
 

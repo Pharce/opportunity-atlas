@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, School
+from .models import Student, School, Access
 
 # Register your models here.
 class StudentAdmin(admin.ModelAdmin):
@@ -19,5 +19,10 @@ class SchoolAdmin(admin.ModelAdmin):
     """
     list_display = ('school_id', 'school_name', 'school_address', 'school_city', 'school_state', 'school_zip', 'school_rank', 'school_lat', 'school_long', 'school_tract', 'akeb_rating', 'niche_rating', 'greatschools_rating')
 
+class AccessAdmin(admin.ModelAdmin):
+    list_display = ('name', 'number', 'email', 'jamatkhana', 'comments')
+
+
 admin.site.register(Student, StudentAdmin)
 admin.site.register(School, SchoolAdmin)
+admin.site.register(Access, AccessAdmin)

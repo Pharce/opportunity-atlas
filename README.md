@@ -46,6 +46,9 @@ python manage.py runserver
 - [x] Finish iframing backend 12/9/2020
 - [x] Dynamic Filtering on School Selection Page 12/9/2020
 - [ ] Connect Template Pages to Backend Database 
+    - [x] Connect dynamic filtering to backend 12/12/2020
+    - [x] Connect Contact Page to Email.js 12/15/2020
+    - [ ] Connect frontpage with scraping. 
     - [ ] Switch from SQL to PostgreSQL
 - [ ] Connect Opportunity Atlas Web Page to Repo with images. 
 - [ ] Import Student Data safely and securely
