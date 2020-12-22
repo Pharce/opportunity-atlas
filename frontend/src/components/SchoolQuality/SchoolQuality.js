@@ -4,6 +4,8 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
+import { Fab } from "@material-ui/core"; 
+import { QuestionAnswerIcon } from "@material-ui/icons/QuestionAnswer";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 
@@ -21,14 +23,28 @@ export default class SchoolQuality extends Component {
         }
     }
 
+    componentDidMount() {
+        const { progress, scores, equity, greatschools, niche, stanford } = this.props.location.state;
+        this.setState({
+            progress: progress,
+            scores: scores,
+            equity: equity,
+            greatschools: greatschools,
+            niche: niche,
+            stanford: stanford
+        })
+
+        console.log(this.state);
+    }
+
     ColorDiv = (rating) => {
-        if (rating < 4) {
+        if (rating == "D" || rating == "C" || rating < 4) {
             return { color: 'red'};
         }
-        if(rating >= 4 && rating < 7) {
+        if(rating =="B" || (rating >= 4 && rating < 7)) {
             return { color: 'yellow'};
         }
-        if(rating >= 7) {
+        if(rating =="A" || rating >= 7) {
             return { color: 'green'};
         }
 
@@ -58,7 +74,9 @@ export default class SchoolQuality extends Component {
                                 Next
                     </Button>
                 </Link>
+                
             </Container>
+            
         );
     }
 }

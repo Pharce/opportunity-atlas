@@ -69,7 +69,17 @@ export default class SchoolSelection extends Component {
                 </TextField>
                 <NamesContainer names = {this.state.names}/>
                 
-                <Link to ="/schoolquality">
+                <Link to ={{
+                    pathname: "/schoolquality",
+                    state : {
+                        progress: 10,
+                        scores: 10,
+                        equity: 10,
+                        greatschools: this.state.names[0].greatschools_rating,
+                        niche: this.state.names[0].niche_rating,
+                        stanford: this.state.names[0].akeb_rating
+                    }
+                }}>
                     <Button variant="contained"
                             color="black"
                             endIcon={<ArrowForwardIosIcon>Next</ArrowForwardIosIcon>}>
