@@ -11,6 +11,27 @@ export default class SchoolQuality extends Component {
 
     constructor() {
         super(); 
+        this.state = {
+            progress: 5,
+            scores: 7,
+            equity: 8,
+            greatschools: 6,
+            niche: 6,
+            stanford: 3
+        }
+    }
+
+    ColorDiv = (rating) => {
+        if (rating < 4) {
+            return { color: 'red'};
+        }
+        if(rating >= 4 && rating < 7) {
+            return { color: 'yellow'};
+        }
+        if(rating >= 7) {
+            return { color: 'green'};
+        }
+
     }
 
     render() {
@@ -22,14 +43,14 @@ export default class SchoolQuality extends Component {
                 </h1>
 
                 <Grid container spacing={3} >
-                    <Grid item xs>GreatSchools</Grid>
-                    <Grid item xs>Niche</Grid>
-                    <Grid item xs>Stanford</Grid>
+                    <Grid item xs style={this.ColorDiv(this.state.greatschools)}>GreatSchools</Grid>
+                    <Grid item xs style={this.ColorDiv(this.state.niche)}>Niche</Grid>
+                    <Grid item xs style={this.ColorDiv(this.state.stanford)}>Stanford</Grid>
                 </Grid>
                 
-                <h3>Student Progress - 8/10. This score indicates how much students are learning at the school over time.</h3>
-                <h3>Test Scores - 7/10. This score indicates how well students do on standardized tests</h3>
-                <h3>Equity - 8/10. This score indicates how well students help all students (from different cultures and backgrounds) learn.</h3>
+                <h3>Student Progress - <div style={this.ColorDiv(this.state.progress)}>{this.state.progress}/10</div>. This score indicates how much students are learning at the school over time.</h3>
+                <h3>Test Scores - <div style={this.ColorDiv(this.state.scores)}>{this.state.scores}/10</div>. This score indicates how well students do on standardized tests</h3>
+                <h3>Equity - <div style={this.ColorDiv(this.state.equity)}>{this.state.equity}/10</div>. This score indicates how well students help all students (from different cultures and backgrounds) learn.</h3>
                 <Link to ="/access">
                     <Button variant="contained"
                             color="black"
