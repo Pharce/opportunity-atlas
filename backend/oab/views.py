@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 from backend.settings import EMAIL_HOST_USER
+=======
+>>>>>>> master
 from django.shortcuts import render
 from rest_framework import viewsets, generics, views
 from rest_framework.decorators import action
@@ -7,6 +10,7 @@ from .models import Student, School, Access
 from django.views import View
 from .models import School
 import pandas as pd
+<<<<<<< HEAD
 from django.http import HttpResponse,JsonResponse
 from django.core.mail import send_mail
 from .forms import AccessForm
@@ -14,6 +18,33 @@ import io
 
 # Create your views here.
 
+=======
+from django.http import HttpResponse,JsonResponse, FileResponse
+from msedge.selenium_tools import Edge, EdgeOptions
+from selenium.webdriver.common.keys import Keys
+from django.core.mail import send_mail
+from .forms import AccessForm
+import logging
+import io
+
+
+def scrape(request):
+
+    if request.method == 'GET':
+        try:
+            address = request.GET["address"]
+            # neighborhood_scrape(address=address)
+            # time.sleep(20)
+        except Exception as e:
+            address = "none"
+    if request.method == 'POST':
+        try:
+            address = request.POST["address"]
+        except Exception as e:
+            address = "none"
+    return HttpResponse(f"Address {address}")
+    #return FileResponse(open('test.png', 'rb'))
+>>>>>>> master
 
 
 class StudentView(viewsets.ModelViewSet):

@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from oab import views
+<<<<<<< HEAD
 from oab.views import SchoolUploadView, SchoolFilterView, AccessView
+=======
+from oab.views import SchoolUploadView, SchoolFilterView, AccessView, scrape
+>>>>>>> master
 
 router = routers.DefaultRouter()
 router.register(r'students', views.StudentView, 'oab')
@@ -28,4 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls), 
     path('api/', include(router.urls)),
     path('importschools/', SchoolUploadView.as_view(), name='importschools'),
+<<<<<<< HEAD
+=======
+    path('scrape/', scrape)
+>>>>>>> master
 ]
