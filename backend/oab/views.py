@@ -16,7 +16,6 @@ import io
 
 
 def scrape(request):
-
     if request.method == 'GET':
         try:
             address = request.GET["address"]
