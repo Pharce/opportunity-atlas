@@ -9,17 +9,6 @@ import Button from "@material-ui/core/Button";
 export default class Atlas extends Component {
     constructor() {
         super(); 
-<<<<<<< HEAD
-    }
-
-    render() {
-        return(
-            <Container>
-                <h1>
-                    According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, you live in a <div style= {{ color: 'red'}}> low</div> opportunity neighborhood.
-                </h1>
-                <img src={testimage} alt="TestImage"/>
-=======
         this.state = {
             neighborhood_rating: 5,
             neighborhood_image: './testimage.PNG',
@@ -50,7 +39,6 @@ export default class Atlas extends Component {
                     {this.ColorDiv()} opportunity neighborhood.
                 </h1>
                 <img src={this.state.neighborhood_image} alt={this.state.neighborhood_alt}/>
->>>>>>> master
                 <h2>
                     The Opportunity Atlas estimates how well neighborhoods help children achieve better future life outcomes.
                     (like income, college attendance, etc.)
