@@ -1,0 +1,8 @@
+{% block content %}
+<h4>Import Schools</h4>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="schoolsfile">
+    <button type="submit">Upload</button>
+  </form>
+{% endblock %}
