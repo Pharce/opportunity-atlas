@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button';
 import { render } from 'react-dom';
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { Fab } from "@material-ui/core"; 
+import  QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
+
 
 
 
@@ -16,7 +19,8 @@ export default class HomePage extends Component {
 
     render() {
         return (
-            <Container>
+            <div style={{ display: 'flex'}}>
+            <Container >
                 <h1>
                     School and Neighborhood Mirror
                 </h1>
@@ -40,6 +44,10 @@ export default class HomePage extends Component {
                     </Button>
                 </Link>
             </Container>
+            <Fab color="primary" position="right-bottom">
+                <QuestionAnswerIcon />
+            </Fab>
+            </div>
         );
     }
 }

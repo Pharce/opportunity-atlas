@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import { Fab } from "@material-ui/core"; 
-import { QuestionAnswerIcon } from "@material-ui/icons/QuestionAnswer";
+import  QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 
@@ -52,7 +52,9 @@ export default class SchoolQuality extends Component {
 
     render() {
         return(
+            
             <Container>
+                
                 <h1>
                     According to AKEB's school ratings, you attend a quality school. 
                     See below for details according to different school ratings websites. 
@@ -74,7 +76,9 @@ export default class SchoolQuality extends Component {
                                 Next
                     </Button>
                 </Link>
-                
+                <Fab color="primary" position="right-bottom">
+                    <QuestionAnswerIcon />
+                </Fab>
             </Container>
             
         );
