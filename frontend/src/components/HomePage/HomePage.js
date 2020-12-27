@@ -14,6 +14,14 @@ import  QuestionAnswerIcon from "@material-ui/icons/QuestionAnswer";
 export default class HomePage extends Component {
     constructor() {
         super(); 
+        this.state = {
+            address: ''
+        }
+    }
+
+    editSearchTerm = (e) => {
+        this.setState({address : e.target.value });
+        console.log(this.state.address);
     }
 
 
@@ -34,9 +42,15 @@ export default class HomePage extends Component {
                 <TextField id="standard-full-width" 
                     label="Address" style= {{ margin: 8 }} 
                     placeholder="Address" fullWidth margin="normal" 
-                    InputLabelProps={{shrink:true,}}>
+                    InputLabelProps={{shrink:true,}}
+                    onChange={this.editSearchTerm}>
                 </TextField>
-                <Link to ="/atlas">
+                <Link to = {{
+                    pathname:"/atlas",
+                    state: {
+                        address: '2234 167th Ave, SE, Bellevue, WA, 98008, USA'
+                    }
+                }}>
                     <Button variant="contained"
                             color="black"
                             endIcon={<ArrowForwardIosIcon>Next</ArrowForwardIosIcon>}>

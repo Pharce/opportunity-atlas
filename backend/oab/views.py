@@ -40,7 +40,17 @@ class StudentView(viewsets.ModelViewSet):
 def filter(request):
     qs = School.objects.all()
     school_prefix = request.GET.get('school_prefix')
+    latitude = float(request.GET.get('latitude'))
+    longitude = float(request.GET.get('longitude'))
     if is_valid_queryparam(school_prefix):
+        # geofiltering
+        qs = qs.filter(school_lat__gt=latitude-0.5
+            ).exclude(school_lat__gt=latitude+0.5
+            ).filter(school_long__gt=longitude-0.5
+            ).exclude(school_long__gt=longitude+0.5)
+
+
+        # School Prefix Filtering
         qs = qs.filter(school_name__startswith=school_prefix)
     
     return qs
@@ -71,19 +81,16 @@ class SchoolUploadView(View):
 
         objs = [
             School(
-                school_id = row['Unnamed: 0'],
                 school_name = row['School'],
-                school_address = row['Address_Address'],
-                school_city = row['Address_City'],
-                school_state = row['Address_State'],
-                school_zip = row['Address_ZipCode'],
                 school_lat = row['lat'],
                 school_long = row['long'],
-                school_tract = row['tract_id'],
                 akeb_rating = row['akeb_rating'],
                 niche_rating = row['niche_rating'],
                 stanford_rating = row['stanford_rating'],
-                greatschools_rating = row['greatschools_rating']
+                greatschools_rating = row['greatschools_rating'],
+                test_rating = row['test_rating'],
+                equity_rating = row['equity_rating'],
+                progress_rating = row['progress_rating']
             )
             for index, row in row_iter 
         ]

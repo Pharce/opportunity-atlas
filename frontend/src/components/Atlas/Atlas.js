@@ -5,15 +5,25 @@ import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Button from "@material-ui/core/Button";
 
-
 export default class Atlas extends Component {
     constructor() {
         super(); 
         this.state = {
             neighborhood_rating: 5,
             neighborhood_image: './testimage.PNG',
-            neighborhood_alt: 'TestImage'
+            neighborhood_alt: 'TestImage',
+            neighborhood_address: '',
         }
+    }
+
+    componentDidMount() {
+        const { address } = this.props.location.state;
+        this.setState({
+            neighborhood_address: address
+        })
+        console.log(this.state.neighborhood_address);
+        const iframeWindow = document.getElementById("myIframe");
+        console.log(iframeWindow.document);
     }
 
     ColorDiv = () => {
@@ -38,7 +48,7 @@ export default class Atlas extends Component {
                     According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, you live in a 
                     {this.ColorDiv()} opportunity neighborhood.
                 </h1>
-                <img src={this.state.neighborhood_image} alt={this.state.neighborhood_alt}/>
+                <iframe id="myIframe" src="https://opportunityatlas.org" title="opportunity"></iframe>
                 <h2>
                     The Opportunity Atlas estimates how well neighborhoods help children achieve better future life outcomes.
                     (like income, college attendance, etc.)

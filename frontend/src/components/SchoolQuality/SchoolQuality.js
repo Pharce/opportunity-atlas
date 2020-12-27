@@ -37,8 +37,11 @@ export default class SchoolQuality extends Component {
         console.log(this.state);
     }
 
-    ColorDiv = (rating) => {
-        if (rating == "D" || rating == "C" || rating < 4) {
+    ColorStyle = (rating) => {
+        if( rating == -1 || rating == "Not rated" || rating == "") {
+            return { color: 'blue' }
+        }
+        if (rating == "D" || rating == "C" || (rating < 4 && rating > -1)) {
             return { color: 'red'};
         }
         if(rating =="B" || (rating >= 4 && rating < 7)) {
@@ -47,9 +50,16 @@ export default class SchoolQuality extends Component {
         if(rating =="A" || rating >= 7) {
             return { color: 'green'};
         }
-
     }
 
+    ColorDiv = (rating) => {
+        if( rating == -1 || rating == "Not rated" || rating == "") {
+            return <div style = {this.ColorStyle(rating)}>Not rated</div>
+        }
+        else {
+            return <div style = {this.ColorStyle(rating)}>{rating}</div>
+        }
+    }
     render() {
         return(
             
@@ -61,14 +71,14 @@ export default class SchoolQuality extends Component {
                 </h1>
 
                 <Grid container spacing={3} >
-                    <Grid item xs style={this.ColorDiv(this.state.greatschools)}>GreatSchools</Grid>
-                    <Grid item xs style={this.ColorDiv(this.state.niche)}>Niche</Grid>
-                    <Grid item xs style={this.ColorDiv(this.state.stanford)}>Stanford</Grid>
+                    <Grid item xs style={this.ColorStyle(this.state.greatschools)}>GreatSchools</Grid>
+                    <Grid item xs style={this.ColorStyle(this.state.niche)}>Niche</Grid>
+                    <Grid item xs style={this.ColorStyle(this.state.stanford)}>Stanford</Grid>
                 </Grid>
                 
-                <h3>Student Progress - <div style={this.ColorDiv(this.state.progress)}>{this.state.progress}/10</div>. This score indicates how much students are learning at the school over time.</h3>
-                <h3>Test Scores - <div style={this.ColorDiv(this.state.scores)}>{this.state.scores}/10</div>. This score indicates how well students do on standardized tests</h3>
-                <h3>Equity - <div style={this.ColorDiv(this.state.equity)}>{this.state.equity}/10</div>. This score indicates how well students help all students (from different cultures and backgrounds) learn.</h3>
+                <h3>Student Progress - <div style={this.ColorStyle(this.state.progress)}>{this.state.progress}/10</div>. This score indicates how much students are learning at the school over time.</h3>
+                <h3>Test Scores - <div style={this.ColorStyle(this.state.scores)}>{this.state.scores}/10</div>. This score indicates how well students do on standardized tests</h3>
+                <h3>Equity - <div style={this.ColorStyle(this.state.equity)}>{this.state.equity}/10</div>. This score indicates how well students help all students (from different cultures and backgrounds) learn.</h3>
                 <Link to ="/access">
                     <Button variant="contained"
                             color="black"

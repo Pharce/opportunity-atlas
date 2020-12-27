@@ -19,79 +19,62 @@ class School(models.Model):
     Returns:
         [id]: school_id
     """
-
-    school_id = models.CharField(
-        "School ID",
-        max_length=100,
-        primary_key=False
-    )
-
+    
+    # school name
     school_name = models.CharField(
         "School Name",
         max_length=256
     )
 
-
-    school_address = models.CharField(
-        "School Address",
-        max_length=256
+    # geolocation
+    school_lat = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
+    )
+    school_long = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
     )
 
-
-    school_city = models.CharField(
-        "School City",
-        max_length=128
+    # ratings 
+    akeb_rating = models.CharField(max_length=8,
+        default="N",
+        null=True,
+        blank=True
+    )
+    niche_rating = models.CharField(max_length=8,
+        default="N",
+        null=True,
+        blank=True
+    )
+    stanford_rating = models.CharField(max_length=8,
+        default="N",
+        null=True,
+        blank=True
+    )
+    greatschools_rating = models.CharField(max_length=8,
+        default="N",
+        null=True,
+        blank=True
+    )
+    test_rating = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
+    )
+    equity_rating = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
+    )
+    progress_rating = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
     )
 
-    school_state = models.CharField(
-        "School State",
-        max_length=16
-    )
-
-    school_zip   = models.CharField(
-        "School Zip",
-        max_length=16
-    )
-
-    school_rank = models.CharField(
-        "School Ranking",
-        max_length=16
-    )
-
-    school_lat = models.CharField(
-        "School Latitude",
-        max_length=16
-    )
-
-    school_long = models.CharField(
-        "School Longitude",
-        max_length=16
-    )
-
-    school_tract = models.CharField(
-        "Tract ID",
-        max_length=16
-    )
-
-    akeb_rating = models.CharField(
-        "AKEB Rating",
-        max_length=4
-    )
-
-    niche_rating = models.CharField(
-        "Niche Rating",
-        max_length=4
-    )
-
-    stanford_rating = models.CharField(
-        "Stanford Rating",
-        max_length=4
-    )
-
-    greatschools_rating = models.CharField(
-        "GreatSchools Rating",
-        max_length=4
-    )
 
     def __str__(self):
         return self.school_name

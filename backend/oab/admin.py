@@ -17,7 +17,7 @@ class SchoolAdmin(admin.ModelAdmin):
     Args:
         admin ([ModelAdmin]): Django Model Admin SuperClass
     """
-    list_display = ('school_id', 'school_name', 'school_address', 'school_city', 'school_state', 'school_zip', 'school_rank', 'school_lat', 'school_long', 'school_tract', 'akeb_rating', 'niche_rating', 'greatschools_rating')
+    list_display = ('school_name', 'school_lat', 'school_long', 'akeb_rating', 'niche_rating', 'stanford_rating', 'greatschools_rating', 'test_rating', 'equity_rating', 'progress_rating')
 
 class AccessAdmin(admin.ModelAdmin):
     list_display = ('name', 'number', 'email', 'jamatkhana', 'comments')
