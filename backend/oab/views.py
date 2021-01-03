@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets, generics, views
 from rest_framework.decorators import action
-from .serializers import StudentSerializer, SchoolSerializer, AccessSerializer
-from .models import Student, School, Access
+from .serializers import StudentSerializer, SchoolSerializer, AccessSerializer, NeighborhoodSerializer
+from .models import Student, School, Access, Neighborhood
 from django.views import View
 from .models import School
 import pandas as pd
@@ -104,18 +104,58 @@ class SchoolUploadView(View):
        
         return JsonResponse(returnmsg)
 
+
+
+class NeighborhoodUploadView(View):
+
+    def get(self, request):
+        template_name = 'base.html'
+        return render(request, template_name)
+    
+    def post(self, request):
+        user = request.user
+
+        paramfile = request.FILES['schoolsfile'].file
+        df = pd.read_csv(paramfile)
+        row_iter = df.iterrows()
+
+        objs = [
+            Neighborhood(
+                tract_id = row['tract_id'],
+                neighborhood_quality = row['neighborhood_rating']
+            )
+            for index, row in row_iter 
+        ]
+        try:
+            Neighborhood.objects.bulk_create(objs)
+            returnmsg = {"status_code": 200}
+            print('imported successfully')
+        except Exception as e:
+            print('Error While Importing Data: ',e)
+            returnmsg = {"status_code": 500}
+       
+        return JsonResponse(returnmsg)
+
+
 def is_valid_queryparam(param):
     return param != '' and param is not None
 
-
-
-
-class SchoolFilterView(generics.ListAPIView):
-    serializer_class = SchoolSerializer
+def filter_neighborhood(request):
+    qs = Neighborhood.objects.all()
+    tract_id = request.GET.get('tract_id')
+    #if is_valid_queryparam(tract_id):
+        # geofiltering
+    tract_id = float(request.GET.get('tract_id'))
+    qs = qs.filter(tract_id=tract_id)
     
-    def get_queryset(self):
-        qs = filter(self.request)
+    return qs
 
+class NeighbhoodView(viewsets.ModelViewSet):
+    serializer_class = NeighborhoodSerializer
+
+    def get_queryset(self):
+        qs = filter_neighborhood(self.request)
+        return qs
 
 
 class AccessView(viewsets.ModelViewSet):

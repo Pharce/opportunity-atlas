@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, School, Access
+from .models import Student, School, Access, Neighborhood
 
 # Register your models here.
 class StudentAdmin(admin.ModelAdmin):
@@ -22,7 +22,10 @@ class SchoolAdmin(admin.ModelAdmin):
 class AccessAdmin(admin.ModelAdmin):
     list_display = ('name', 'number', 'email', 'jamatkhana', 'comments')
 
+class NeighborhoodAdmin(admin.ModelAdmin):
+    list_display = ('tract_id', 'neighborhood_quality')
 
 admin.site.register(Student, StudentAdmin)
 admin.site.register(School, SchoolAdmin)
 admin.site.register(Access, AccessAdmin)
+admin.site.register(Neighborhood, NeighborhoodAdmin)

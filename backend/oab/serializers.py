@@ -1,5 +1,7 @@
+from django.db import models
+from django.db.models import fields
 from rest_framework import serializers
-from .models import Student, School, Access
+from .models import Student, School, Access, Neighborhood
 
 # serializer creates JSON object
 class StudentSerializer(serializers.ModelSerializer):
@@ -10,7 +12,13 @@ class StudentSerializer(serializers.ModelSerializer):
 class SchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = School
-        fields = ('school_id', 'school_name', 'school_address', 'school_city', 'school_state', 'school_zip', 'school_rank', 'school_lat', 'school_long', 'school_tract', 'akeb_rating', 'niche_rating', 'greatschools_rating')
+        fields = '__all__'
+
+class NeighborhoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Neighborhood
+        fields = '__all__'
+
 
 class AccessSerializer(serializers.ModelSerializer):
     class Meta:

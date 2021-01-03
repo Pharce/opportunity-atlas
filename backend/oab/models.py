@@ -8,6 +8,19 @@ class Access(models.Model):
     jamatkhana = models.CharField('jamatkhana', max_length=100)
     comments = models.CharField('comments', max_length=100)
 
+class Neighborhood(models.Model):
+    tract_id = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
+    )
+
+    neighborhood_quality = models.FloatField(
+        default=-1,
+        null=True,
+        blank=True
+    )
+
 
 
 class School(models.Model):
