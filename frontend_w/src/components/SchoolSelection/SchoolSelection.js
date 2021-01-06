@@ -36,6 +36,14 @@ export default class SchoolSelection extends Component {
         this.dynamicRecall();
     }
 
+    componentDidMount() {
+        const { latitude, longitude } = this.props.location.state;
+        this.setState({
+            latitude: latitude,
+            longitude: longitude
+        })
+    }
+
 
     dynamicRecall = () => {
         if(this.state.searchTerm.length > 0) {

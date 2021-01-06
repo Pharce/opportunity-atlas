@@ -86,9 +86,6 @@ export default class SchoolQuality extends Component {
                                 Next
                     </Button>
                 </Link>
-                <Fab color="primary" position="right-bottom">
-                    <QuestionAnswerIcon />
-                </Fab>
             </Container>
             
         );

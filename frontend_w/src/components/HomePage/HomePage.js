@@ -48,7 +48,7 @@ export default class HomePage extends Component {
                 <Link to = {{
                     pathname:"/atlas",
                     state: {
-                        address: '2234 167th Ave, SE, Bellevue, WA, 98008, USA'
+                        address: this.state.address
                     }
                 }}>
                     <Button variant="contained"
@@ -58,9 +58,7 @@ export default class HomePage extends Component {
                     </Button>
                 </Link>
             </Container>
-            <Fab color="primary" position="right-bottom">
-                <QuestionAnswerIcon />
-            </Fab>
+            
             </div>
         );
     }

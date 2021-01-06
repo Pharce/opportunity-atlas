@@ -73,8 +73,6 @@ export default class Atlas extends Component {
                 .catch(err => {
                     console.log(err); 
                 }); 
-        var iframe = document.getElementById('IF1')
-        var window = iframe.contentWindow;
     }
 
     ColorDiv = () => {
@@ -110,7 +108,13 @@ export default class Atlas extends Component {
                     are here to work with you to explore options together. Click <Link to="/access">here</Link> to reach out. 
                 </h3>
 
-                <Link to ="/schoolselection">
+                <Link to = {{
+                    pathname:"/schoolselection",
+                    state : {
+                        latitude: this.state.latitude,
+                        longitude: this.state.longitude
+                    }
+                    }}>
                     <Button variant="contained"
                             color="black"
                             endIcon={<ArrowForwardIosIcon>Next</ArrowForwardIosIcon>}>
