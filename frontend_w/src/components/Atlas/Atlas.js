@@ -31,7 +31,12 @@ export default class Atlas extends Component {
         console.log(this.state.neighborhood_address); 
         console.log(this.state.neighborhood_rating);
         await axios
-                .get("https://cors-anywhere.herokuapp.com/https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress", {
+                .get("/geocoder/geographies/onelineaddress", {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+                    },
                     params: { 
                         address: '2234 167th Ave, SE, Bellevue, WA, 98008, USA',
                         benchmark: "Public_AR_Current",
