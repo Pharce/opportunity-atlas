@@ -48,12 +48,12 @@ python manage.py runserver
 - [ ] Connect Template Pages to Backend Database 
     - [x] Connect dynamic filtering to backend 12/12/2020
     - [x] Connect Contact Page to Email.js 12/15/2020
-    - [x] Loaded entire schools database
-    - [ ] Connect frontpage with scraping. 
-    - [ ] Switch from SQL to PostgreSQL
-- [ ] Connect Opportunity Atlas Web Page to Repo with images. 
-- [ ] Import Student Data safely and securely
-- [ ] Finish styling the Template Pages with material-ui
+    - [x] Loaded entire schools database 01/01/2021
+    - [-] Connect frontpage with scraping. 
+    - [-] Switch from SQL to PostgreSQL
+- [x] Connect Opportunity Atlas Web Page to Repo with images.  01/07/2021
+- [x] Import Student Data safely and securely 01/06/20201
+- [x] Finish styling the Template Pages with material-ui
 - [ ] Add Text Transcription and Translation via Google Translate.
 - [ ] Deploy to Heroku / Add Deployment Code
 
