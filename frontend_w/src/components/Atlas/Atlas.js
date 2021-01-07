@@ -18,6 +18,7 @@ export default class Atlas extends Component {
             latitude: 31,
             longitude: 85,
             tract: 48157672900,
+            atlasimage: '',
         }
     } 
 
@@ -73,6 +74,9 @@ export default class Atlas extends Component {
                 .catch(err => {
                     console.log(err); 
                 }); 
+        await this.setState({
+            atlasimage: 'https://ng-atlas.s3.ca-central-1.amazonaws.com/atlas_screenshots/' + this.state.tract + '.png',
+        })
     }
 
     ColorDiv = () => {
@@ -97,7 +101,7 @@ export default class Atlas extends Component {
                     According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, you live in a 
                     {this.ColorDiv()} opportunity neighborhood.
                 </h1>
-                <iframe id="IF1" name="iframe1" src="https://opportunityatlas.org" title="opportunity"></iframe>
+                <img src={this.state.atlasimage} width="100%"></img>
                 <h2>
                     The Opportunity Atlas estimates how well neighborhoods help children achieve better future life outcomes.
                     (like income, college attendance, etc.)
