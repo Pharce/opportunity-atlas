@@ -17,21 +17,22 @@ export default class Atlas extends Component {
             neighborhood_address: '',
             latitude: 31,
             longitude: 85,
-            tract: 48157672900,
+            tract: -1,
             atlasimage: '',
+            imageset: false
         }
     } 
 
 
 
     async componentDidMount() {
-        const { address } = this.props.location.state;
+        const { address } = await this.props.location.state;
         await this.setState({
             neighborhood_address: address
         });
         console.log(this.state.neighborhood_address); 
         console.log(this.state.neighborhood_rating);
-        await axios
+        const response = await axios
                 .get("/geocoder/geographies/onelineaddress", {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -39,44 +40,44 @@ export default class Atlas extends Component {
                         "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
                     },
                     params: { 
-                        address: '2234 167th Ave, SE, Bellevue, WA, 98008, USA',
+                        address: address,
                         benchmark: "Public_AR_Current",
-                        vintage: "Current_Current",
+                        vintage: "Census2010_Current",
                         format: "json"
                     }
-                })
-                .then(res => {
-                    console.log(res.data.result.addressMatches[0].coordinates);
-                    console.log(res.data.result.addressMatches[0].geographies["2010 Census Blocks"][0].GEOID)
-                    this.setState({
-                        latitude: res.data.result.addressMatches[0].coordinates.x,
-                        longitude: res.data.result.addressMatches[0].coordinates.y,
-                        tract: res.data.result.addressMatches[0].geographies["2010 Census Blocks"][0].GEOID
-                    })
                 })
                 .catch(err => {
                     console.log(err);
                 });
-        await axios
+        const tract_id = await response.data.result.addressMatches[0].geographies["Census Tracts"][0].GEOID
+
+        const latitude = await response.data.result.addressMatches[0].coordinates.y
+        const longitude = await response.data.result.addressMatches[0].coordinates.x
+
+        console.log(tract_id)
+        console.log(latitude)
+        
+        const response_2 = await axios
                 .get("http://127.0.0.1:8000/api/neighborhoods/", {
                     params: {
-                        tract_id: this.state.tract
+                        tract_id: "" + tract_id.substring(0, 11)
                     }
-                })
-                .then(res => {
-                    console.log(res.data[0].neighborhood_quality); 
-                    this.setState({
-                        neighborhood_rating: res.data[0].neighborhood_quality,
-                    })
-                    console.log(this.state.neighborhood_rating); 
-
-                })
-                .catch(err => {
+                }).catch(err => {
                     console.log(err); 
+
                 }); 
+
         await this.setState({
-            atlasimage: 'https://ng-atlas.s3.ca-central-1.amazonaws.com/atlas_screenshots/' + this.state.tract + '.png',
+            atlasimage: "https://ng-atlas.s3.ca-central-1.amazonaws.com/atlas_screenshots/" + tract_id.substring(0, 11) + '.png',
+            tract: tract_id,
+            latitude: latitude,
+            longitude: longitude,
+            imageset: true
         })
+
+        console.log(this.state.atlasimage);
+        console.log(response_2.data);
+
     }
 
     ColorDiv = () => {
@@ -101,7 +102,7 @@ export default class Atlas extends Component {
                     According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, you live in a 
                     {this.ColorDiv()} opportunity neighborhood.
                 </h1>
-                <img src={this.state.atlasimage} width="100%"></img>
+                <AtlasImage atlasimage={this.state.atlasimage} imageset={this.state.imageset}/>
                 <h2>
                     The Opportunity Atlas estimates how well neighborhoods help children achieve better future life outcomes.
                     (like income, college attendance, etc.)
@@ -127,5 +128,20 @@ export default class Atlas extends Component {
                 </Link>
             </Container>
         );
+    }
+}
+
+class AtlasImage extends Component {
+    render() {
+        if(this.props.imageset) {
+            return(
+                <img src={this.props.atlasimage} width="100%"></img>
+            )
+        }
+        else {
+            return(
+                <iframe url="https://opportunityatlas.org/" />
+            )
+        }
     }
 }

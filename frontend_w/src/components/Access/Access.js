@@ -4,6 +4,8 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { Grid } from "@material-ui/core";
 import * as emailjs from 'emailjs-com';
+import { Link } from "react-router-dom";
+
 
 
 export default class Access extends Component {
@@ -39,14 +41,14 @@ export default class Access extends Component {
             from_name: this.state.email,
             to_name: 'AKEB',
             subject: this.state.name,
-            message_html: this.state.comments,
+            message: this.state.comments,
         }
 
         emailjs.send(
-            'service_ng38l4s',
-            'template_d2i530a',
+            'service_415suiq',
+            'template_6lqvmhb',
             templateParams,
-            'user_AkL0lTtT1JT2mvNT65DgT'
+            'user_ZXoEDF12TdZ7KT2Hv8eWA'
         ).then(res => {
             console.log('success!');
         }, function(err) {
@@ -108,9 +110,12 @@ export default class Access extends Component {
                             onChange={this.handleInputChange}
                             >Your comments / questions</TextField>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" type= "submit" onSubmit={this.handleSubmit} onClick={this.handleSubmit}>Submit</Button>
-                    </Grid>
+                    <Link to ="/">
+                        <Grid item xs={12}>
+                            <Button variant="contained" type= "submit" onSubmit={this.handleSubmit} onClick={this.handleSubmit}>Submit</Button>
+                        </Grid>
+                    </Link>
+                    
                 </Grid>
             </Container>
         );

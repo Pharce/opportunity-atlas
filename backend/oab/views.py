@@ -158,6 +158,19 @@ class NeighbhoodView(viewsets.ModelViewSet):
         return qs
 
 
+class FeedbackView(viewsets.ModelViewSet):
+    serializer_class = AccessSerializer
+    queryset = Access.objects.all()
+
+    def post(self, request):
+        objs = [
+            Access(
+                
+            )
+            for index, row in row_iter 
+        ]
+
+
 class AccessView(viewsets.ModelViewSet):
     serializer_class = AccessSerializer
     

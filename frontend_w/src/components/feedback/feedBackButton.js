@@ -7,39 +7,63 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Component } from "react";
+import axios from "axios";
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
-}));
 
-export default function FeedBackButton() {
-  const classes = useStyles();
+export default class FeedBackButton extends Component {
+  constructor() {
+    super(); 
+    this.state = {
+        feedback: ''
+    }
+  }
 
-  return (
-    <div className={classes.root}>
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography className={classes.heading}>Have feedback?</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-              
-          </Typography>
-          <TextField id="standard-basic" label="feedback" />
-          <Button variant="contained">Submit</Button>
-        </AccordionDetails>
-      </Accordion>
-    </div>
-  );
+  editFeedback = (e) => {
+    this.setState({feedback : e.target.value });
+    console.log(this.state.feedback);
+  }
+
+  submitFeedback = (e) => {
+    axios.post("http://localhost:8000/api/access/", {
+      params: {
+        name: "",
+        number: "",
+        email: "", 
+        jamatkhana: "",
+        comments: this.state.feedback
+      }
+    }).then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
+
+  render() {
+    
+    return (
+      <div>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            <Typography>Have feedback?</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+                
+            </Typography>
+            <TextField id="standard-basic" label="feedback" onChange={this.editFeedback}/>
+            <Button variant="contained" onClick={this.submitFeedback}>Submit</Button>
+          </AccordionDetails>
+        </Accordion>
+      </div>
+    );
+  }
 }

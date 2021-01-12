@@ -12,11 +12,7 @@ export default class SchoolSelection extends Component {
     constructor() {
         super(); 
         this.state = {
-            names : [
-                'Elementary School',
-                'Middle School',
-                'High School'
-            ],
+            names : [],
             searchTerm : '',
             loading: false,
             latitude: 31,

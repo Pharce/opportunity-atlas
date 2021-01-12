@@ -2,10 +2,10 @@ from django.db import models
 import pandas as pd
 
 class Access(models.Model):
-    name = models.CharField('name', max_length=100)
-    number = models.CharField('number', max_length=100)
-    email = models.CharField('email', max_length=100)
-    jamatkhana = models.CharField('jamatkhana', max_length=100)
+    name = models.CharField('name', max_length=100, blank=True)
+    number = models.CharField('number', max_length=100, blank=True)
+    email = models.CharField('email', max_length=100, blank=True)
+    jamatkhana = models.CharField('jamatkhana', max_length=100, blank=True)
     comments = models.CharField('comments', max_length=100)
 
 class Neighborhood(models.Model):
@@ -19,6 +19,13 @@ class Neighborhood(models.Model):
         default=-1,
         null=True,
         blank=True
+    )
+
+class Feedback(models.Model):
+
+    feedback = models.CharField(
+        default="None",
+        max_length=2048
     )
 
 

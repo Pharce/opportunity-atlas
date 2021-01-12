@@ -24,3 +24,4 @@ class AccessSerializer(serializers.ModelSerializer):
     class Meta:
         model = Access
         fields = ('name', 'number', 'email', 'jamatkhana', 'comments')
+    
