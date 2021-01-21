@@ -83,13 +83,13 @@ export default class Atlas extends Component {
     ColorDiv = () => {
         console.log(this.state.neigborhood_rating);
         let rating = this.state.neighborhood_rating;
-        if (rating < 4) {
+        if (rating < 6) {
             return <div style= {{ color: 'red'}}>lower</div>;
         }
-        if(rating >= 4 && rating < 7) {
+        if(rating >= 6 && rating < 9) {
             return <div style= {{ color: 'yellow'}}>medium</div>;
         }
-        if(rating >= 7) {
+        if(rating >= 9) {
             return <div style= {{ color: 'green'}}>great</div>;
         }
     }

@@ -41,13 +41,13 @@ export default class SchoolQuality extends Component {
         if( rating == -1 || rating == "Not rated" || rating == "") {
             return { color: 'blue' }
         }
-        if (rating == "D" || rating == "C" || (rating < 4 && rating > -1)) {
+        if (rating == "D" || rating == "C" || (rating < 6 && rating > -1)) {
             return { color: 'red'};
         }
-        if(rating =="B" || (rating >= 4 && rating < 7)) {
+        if(rating =="B" || (rating >= 6 && rating < 9)) {
             return { color: 'yellow'};
         }
-        if(rating =="A" || rating >= 7) {
+        if(rating =="A" || rating >= 9) {
             return { color: 'green'};
         }
     }
