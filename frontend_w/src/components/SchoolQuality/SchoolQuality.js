@@ -60,6 +60,20 @@ export default class SchoolQuality extends Component {
             return <div style = {this.ColorStyle(rating)}>{rating}</div>
         }
     }
+
+    OverallColorDiv = () => {
+        console.log(this.state.neigborhood_rating);
+        let rating = this.state.greatschools;
+        if (rating == "D" || rating == "C" || (rating < 6)) {
+            return <div style= {{ color: 'red'}}>lower</div>;
+        }
+        if(rating == "B" || rating >= 6 && rating < 9) {
+            return <div style= {{ color: 'yellow'}}>medium</div>;
+        }
+        if(rating =="A" || rating >= 9) {
+            return <div style= {{ color: 'green'}}>higher</div>;
+        }
+    }
     render() {
         return(
             
@@ -68,10 +82,13 @@ export default class SchoolQuality extends Component {
                 <h1>
                     According to AKEB's school ratings, you attend a quality school. 
                     See below for details according to different school ratings websites. 
+
+                    According to <a href="greatschools.org">greatschools.org</a>, this appears to be a  
+                    {this.OverallColorDiv()} opportunity school.
                 </h1>
 
                 <Grid container spacing={3} >
-                    <Grid item xs style={this.ColorStyle(this.state.greatschools)}>GreatSchools</Grid>
+                    <Grid item xs style={this.ColorStyle(this.state.greatschools)}> {this.state.greatschools} - GreatSchools</Grid>
                     <Grid item xs style={this.ColorStyle(this.state.niche)}>Niche</Grid>
                     <Grid item xs style={this.ColorStyle(this.state.stanford)}>Stanford</Grid>
                 </Grid>

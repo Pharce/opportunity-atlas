@@ -90,7 +90,7 @@ export default class Atlas extends Component {
             return <div style= {{ color: 'yellow'}}>medium</div>;
         }
         if(rating >= 9) {
-            return <div style= {{ color: 'green'}}>great</div>;
+            return <div style= {{ color: 'green'}}>higher</div>;
         }
     }
 
@@ -99,7 +99,7 @@ export default class Atlas extends Component {
         return(
             <Container>
                 <h1>
-                    According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, you live in a 
+                    According to <a href="OpportunityAtlas.org">OpportunityAtlas.org</a>, this appears to be a  
                     {this.ColorDiv()} opportunity neighborhood.
                 </h1>
                 <AtlasImage atlasimage={this.state.atlasimage} imageset={this.state.imageset}/>

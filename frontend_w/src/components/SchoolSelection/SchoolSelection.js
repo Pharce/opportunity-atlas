@@ -100,6 +100,7 @@ export default class SchoolSelection extends Component {
                     margin="normal"
                     options={this.state.names}
                     getOptionLabel={(option) => option.school_name}
+                    getOptionSelected={(option) => option.school_name}
                     style={{ width: "100%" }}
                     renderInput={(params) => <TextField {...params} label="School Name" variant="outlined" onChange={this.editSearchTerm}/>}
                     />

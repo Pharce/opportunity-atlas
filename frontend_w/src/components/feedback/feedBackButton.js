@@ -53,7 +53,7 @@ export default class FeedBackButton extends Component {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>Have feedback?</Typography>
+            <Typography>Questions or feedback?</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
