@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Autocomplete from "@material-ui/lab/Autocomplete"; 
 import axios from 'axios';
 
 
@@ -92,15 +93,16 @@ export default class SchoolSelection extends Component {
                 <h2>
                     If you have children at multiple schools, start by picking one. 
                 </h2>
-                <TextField id="standard-full-width" 
-                    label="School"
-                    placeholder="School Name" fullWidth margin="normal" 
-                    onChange={this.editSearchTerm}
-                    value = {this.state.searchTerm}
-                    InputLabelProps={{shrink:true,}}>
-                </TextField>
-                <NamesContainer names = {this.state.names}/>
-                
+
+                <Autocomplete
+                    id="autocomplete-schools"
+                    fullWidth
+                    margin="normal"
+                    options={this.state.names}
+                    getOptionLabel={(option) => option.school_name}
+                    style={{ width: "100%" }}
+                    renderInput={(params) => <TextField {...params} label="School Name" variant="outlined" onChange={this.editSearchTerm}/>}
+                    />
                 <Link to ={{
                     pathname: "/schoolquality",
                     state : {
