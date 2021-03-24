@@ -57,6 +57,9 @@ export default class HomePage extends Component {
                                 Next
                     </Button>
                 </Link>
+            <div style={{ height: 50, marginTop: 5 }}>
+              <div id="google_translate_element" ref="googleTranslateElement"></div>
+            </div>
             </Container>
             <Fab color="primary" position="right-bottom">
                 <QuestionAnswerIcon />
